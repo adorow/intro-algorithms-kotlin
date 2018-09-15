@@ -2,7 +2,7 @@ package chapter02
 
 
 // Based on the "in-place" sort defined by the book's pseudo-code
-private fun Merge(A: MutableList<Int>, p: Int, q: Int, r: Int): Unit {
+private fun <T : Comparable<T>> Merge(A: MutableList<T>, p: Int, q: Int, r: Int): Unit {
     val n1 = q - p + 1
     val n2 = r - q
 
@@ -24,7 +24,7 @@ private fun Merge(A: MutableList<Int>, p: Int, q: Int, r: Int): Unit {
     }
 }
 
-fun MergeSort(A: MutableList<Int>, p: Int = 0, r: Int = A.size - 1) {
+fun <T : Comparable<T>> MergeSort(A: MutableList<T>, p: Int = 0, r: Int = A.size - 1) {
     if (p < r) {
         val q = (p + r) / 2
         MergeSort(A, p, q)
