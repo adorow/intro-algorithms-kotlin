@@ -1,7 +1,7 @@
 package chapter02
 
 // Based on the "in-place" implementation defined in the book's pseudo-code
-fun <T : Comparable<T>> InsertionSort(A: MutableList<T>): Unit {
+fun <T : Comparable<T>> insertionSort(A: MutableList<T>): Unit {
     for (j in 1 until A.size) {
         val key = A[j]
 

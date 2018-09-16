@@ -1,8 +1,8 @@
 package chapter02
 
 
-// Based on the "in-place" sort defined by the book's pseudo-code
-private fun <T : Comparable<T>> Merge(A: MutableList<T>, p: Int, q: Int, r: Int): Unit {
+// Based on the "in-place" sort defined by the book's pseudo-code. But without using the "sentinel" value at the end of the internal lists.
+private fun <T : Comparable<T>> merge(A: MutableList<T>, p: Int, q: Int, r: Int): Unit {
     val n1 = q - p + 1
     val n2 = r - q
 
@@ -24,11 +24,11 @@ private fun <T : Comparable<T>> Merge(A: MutableList<T>, p: Int, q: Int, r: Int)
     }
 }
 
-fun <T : Comparable<T>> MergeSort(A: MutableList<T>, p: Int = 0, r: Int = A.size - 1) {
+fun <T : Comparable<T>> mergeSort(A: MutableList<T>, p: Int = 0, r: Int = A.size - 1) {
     if (p < r) {
         val q = (p + r) / 2
-        MergeSort(A, p, q)
-        MergeSort(A, q + 1, r)
-        Merge(A, p, q, r)
+        mergeSort(A, p, q)
+        mergeSort(A, q + 1, r)
+        merge(A, p, q, r)
     }
 }
