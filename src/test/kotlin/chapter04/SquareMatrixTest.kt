@@ -1,7 +1,10 @@
 package chapter04
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Tag
+import org.junit.jupiter.api.Test
 
 class SquareMatrixTest {
 
@@ -35,6 +38,31 @@ class SquareMatrixTest {
             assertThat(c[3, 1]).isEqualTo(32)
             assertThat(c[3, 2]).isEqualTo(48)
             assertThat(c[3, 3]).isEqualTo(64)
+        }
+
+        @Test
+        fun `standard square matrix multiplication, from exercise 4 2-1`() {
+            val a = SquareMatrix.from(
+                    arrayOf(
+                        arrayOf(1, 3),
+                        arrayOf(7, 5)
+                    )
+            )
+
+            val b = SquareMatrix.from(
+                    arrayOf(
+                            arrayOf(6, 8),
+                            arrayOf(4, 2)
+                    )
+            )
+
+            val c = squareMatrixMultiply(a, b)
+
+            assertThat(c.rows).isEqualTo(2)
+            assertThat(c[0, 0]).isEqualTo(18)
+            assertThat(c[0, 1]).isEqualTo(14)
+            assertThat(c[1, 0]).isEqualTo(62)
+            assertThat(c[1, 1]).isEqualTo(66)
         }
 
         @Test
@@ -83,6 +111,31 @@ class SquareMatrixTest {
         }
 
         @Test
+        fun `recursive square matrix multiplication, from exercise 4 2-1`() {
+            val a = SquareMatrix.from(
+                    arrayOf(
+                            arrayOf(1, 3),
+                            arrayOf(7, 5)
+                    )
+            )
+
+            val b = SquareMatrix.from(
+                    arrayOf(
+                            arrayOf(6, 8),
+                            arrayOf(4, 2)
+                    )
+            )
+
+            val c = squareMatrixMultiplyRecursive(a, b)
+
+            assertThat(c.rows).isEqualTo(2)
+            assertThat(c[0, 0]).isEqualTo(18)
+            assertThat(c[0, 1]).isEqualTo(14)
+            assertThat(c[1, 0]).isEqualTo(62)
+            assertThat(c[1, 1]).isEqualTo(66)
+        }
+
+        @Test
         @Tag("performance")
         fun `recursive square matrix multiplication (large input)`() {
             val n = 512
@@ -125,6 +178,31 @@ class SquareMatrixTest {
             assertThat(c[3, 1]).isEqualTo(32)
             assertThat(c[3, 2]).isEqualTo(48)
             assertThat(c[3, 3]).isEqualTo(64)
+        }
+
+        @Test
+        fun `recursive2 square matrix multiplication, from exercise 4 2-1`() {
+            val a = SquareMatrix.from(
+                    arrayOf(
+                            arrayOf(1, 3),
+                            arrayOf(7, 5)
+                    )
+            )
+
+            val b = SquareMatrix.from(
+                    arrayOf(
+                            arrayOf(6, 8),
+                            arrayOf(4, 2)
+                    )
+            )
+
+            val c = squareMatrixMultiplyRecursive2(a, b)
+
+            assertThat(c.rows).isEqualTo(2)
+            assertThat(c[0, 0]).isEqualTo(18)
+            assertThat(c[0, 1]).isEqualTo(14)
+            assertThat(c[1, 0]).isEqualTo(62)
+            assertThat(c[1, 1]).isEqualTo(66)
         }
 
         @Test

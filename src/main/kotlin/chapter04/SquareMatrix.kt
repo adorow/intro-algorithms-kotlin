@@ -4,6 +4,9 @@ package chapter04
 interface SquareMatrix {
     companion object {
 
+        fun from(m: Array<Array<Int>>): SquareMatrix =
+                ArrayBasedSquareMatrix(m)
+
         /**
          * Initializes a square matrix of size n x n, and initializing it.
          *
