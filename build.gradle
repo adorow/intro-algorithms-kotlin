@@ -35,5 +35,7 @@ kotlin {
 }
 
 test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        excludeTags 'performance'
+    }
 }

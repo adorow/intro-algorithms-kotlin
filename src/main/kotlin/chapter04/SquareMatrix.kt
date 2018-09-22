@@ -32,6 +32,17 @@ interface SquareMatrix {
                 this[i, j] + other[i, j]
             }
 
+    /**
+     * Assigns the values of another SquareMatrix to this one
+     */
+    fun assign(other: SquareMatrix) {
+        for (i in 0 until other.rows) {
+            for (j in 0 until other.rows) {
+                this[i, j] = other[i, j]
+            }
+        }
+    }
+
 }
 
 private class ArrayBasedSquareMatrix(private val m: Array<Array<Int>>) : SquareMatrix {
@@ -175,5 +186,63 @@ fun squareMatrixMultiplyRecursive(A: SquareMatrix, B: SquareMatrix): SquareMatri
     val c22 = squareMatrixMultiplyRecursive(A.partition(mid, mid, 0, mid), B.partition(0, mid, mid, mid)) + squareMatrixMultiplyRecursive(A.partition(mid, mid, mid, mid), B.partition(mid, mid, mid, mid))
 
     return JoinedSubSquareMatrix(c11, c12, c21, c22)
-
 }
+
+/**
+ * This version of the recursive algorithm does not recreate the resulting Matrix C at every recursion, applying the calculations diredctly to the results.
+ * This means that this version can actually take advantage of the improvements the Divide-and-Conquer approach gives.
+ */
+fun squareMatrixMultiplyRecursive2(A: SquareMatrix, B: SquareMatrix): SquareMatrix {
+    val n = A.rows
+
+    val C = SquareMatrix.ofSize(n)
+    squareMatrixMultiplyRecursive2_(A, B, C)
+    return C
+}
+
+// A and B are the input for the multiplication, and C is the outcome of the multiplication
+private fun squareMatrixMultiplyRecursive2_(A: SquareMatrix, B: SquareMatrix, C: SquareMatrix) {
+    val n = A.rows
+
+    if (n == 1) {
+        // we always add up to C, since we already initialized with 0 (zero)
+        C[0, 0] += A[0, 0] * B[0, 0]
+        return
+    }
+
+    val mid = n / 2
+
+    val A11 = A.partition(0, mid, 0, mid)
+    val A12 = A.partition(0, mid, mid, mid)
+    val A21 = A.partition(mid, mid, 0, mid)
+    val A22 = A.partition(mid, mid, mid, mid)
+
+    val B11 = B.partition(0, mid, 0, mid)
+    val B12 = B.partition(0, mid, mid, mid)
+    val B21 = B.partition(mid, mid, 0, mid)
+    val B22 = B.partition(mid, mid, mid, mid)
+
+    val C11 = C.partition(0, mid, 0, mid)
+    val C12 = C.partition(0, mid, mid, mid)
+    val C21 = C.partition(mid, mid, 0, mid)
+    val C22 = C.partition(mid, mid, mid, mid)
+
+    // below the recursive calls will already add up the multiplications, because of how we calculate at n==1
+
+    // sum for C11
+    squareMatrixMultiplyRecursive2_(A11, B11, C11)
+    squareMatrixMultiplyRecursive2_(A12, B21, C11)
+
+    // sum for C12
+    squareMatrixMultiplyRecursive2_(A11, B12, C12)
+    squareMatrixMultiplyRecursive2_(A12, B22, C12)
+
+    // sum for C21
+    squareMatrixMultiplyRecursive2_(A21, B11, C21)
+    squareMatrixMultiplyRecursive2_(A22, B21, C21)
+
+    // sum for C22
+    squareMatrixMultiplyRecursive2_(A21, B12, C22)
+    squareMatrixMultiplyRecursive2_(A22, B22, C22)
+}
+
