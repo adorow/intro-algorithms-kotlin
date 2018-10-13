@@ -35,17 +35,6 @@ interface SquareMatrix {
                 this[i, j] + other[i, j]
             }
 
-    /**
-     * Assigns the values of another SquareMatrix to this one
-     */
-    fun assign(other: SquareMatrix) {
-        for (i in 0 until other.rows) {
-            for (j in 0 until other.rows) {
-                this[i, j] = other[i, j]
-            }
-        }
-    }
-
 }
 
 private class ArrayBasedSquareMatrix(private val m: Array<Array<Int>>) : SquareMatrix {
