@@ -8,5 +8,21 @@ Introduction to algorithms in Kotlin
 As part of my drive to learn more about Kotlin I decided to start this little project where I will be writing algorithms found in the Third Edition of the book in Kotlin.
 The idea is for it to first be a transliteration of the pseudo-algorithms found in the book. And then I'll attempt to use some of the language features to make it more Kotlin-like.
 
-If you want to have a look at all the algorithms in sequence, while following up with the book, you can try going [here](doc/README.md).
+The Journey
+-----------
+
+While reading the book, and writing some code, I'm also writing down a small summary of the book, and documenting the code I'm writing.
+So if you want to see that follow the summary down below.
+
+Summary
+-------
+
+* [i. Foundations](doc/1.00.md)
+  * [1. The Role of Algorithms in Computing](doc/1.01.md)
+  * [2. Getting Started](doc/1.02.md)
+  * [3. Growth of Functions](doc/1.03.md)
+  * [4. Divide-and-Conquer](doc/1.04.md)
+  * [5. Probabilistic Analysis and Randomized Algorithms](doc/1.05.md)
+*  (TBD)
+
 
