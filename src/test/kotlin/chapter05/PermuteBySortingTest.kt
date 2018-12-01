@@ -7,7 +7,7 @@ import java.util.*
 class PermuteBySortingTest {
 
     @Test
-    fun `permute sequential input`() {
+    fun `all values are still present`() {
         val input = listOf(1, 2, 3, 4, 5, 6)
 
         val result = permuteBySorting(input)
