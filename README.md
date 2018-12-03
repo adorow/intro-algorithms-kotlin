@@ -23,6 +23,7 @@ Summary
   * [3. Growth of Functions](doc/1.03.md)
   * [4. Divide-and-Conquer](doc/1.04.md)
   * [5. Probabilistic Analysis and Randomized Algorithms](doc/1.05.md)
-*  (TBD)
+* [ii. Sorting and Order Statistics](doc/2.00.md)
+  * [](TBD)
 
 
