@@ -24,6 +24,6 @@ Summary
   * [4. Divide-and-Conquer](doc/1.04.md)
   * [5. Probabilistic Analysis and Randomized Algorithms](doc/1.05.md)
 * [ii. Sorting and Order Statistics](doc/2.00.md)
-  * [](TBD)
+  * [6. Heapsort](2.06.md)
 
 
