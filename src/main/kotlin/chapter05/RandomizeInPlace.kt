@@ -1,12 +1,7 @@
 package chapter05
 
+import ext.swap
 import java.util.*
-
-fun <T> MutableList<T>.swap(i1: Int, i2: Int) {
-    val v1 = this[i1]
-    this[i1] = this[i2]
-    this[i2] = v1
-}
 
 fun Random.nextInt(lowerBound: Int, upperBound: Int): Int =
         this.nextInt(upperBound - lowerBound) + lowerBound

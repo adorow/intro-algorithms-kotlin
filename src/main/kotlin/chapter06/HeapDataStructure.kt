@@ -1,5 +1,6 @@
 package chapter06
 
+import ext.swap
 import kotlin.math.max
 
 /**
@@ -48,9 +49,7 @@ class MaxHeap private constructor(private var A: Array<Int>) {
     }
 
     fun swap(i1: Int, i2: Int) {
-        val v1 = this[i1]
-        this[i1] = this[i2]
-        this[i2] = v1
+        A.swap(i1, i2)
     }
 
     fun decrementHeapSize() {
