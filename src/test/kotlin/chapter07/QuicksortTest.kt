@@ -1,44 +1,95 @@
 package chapter07
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 class QuicksortTest {
 
-    @Test
-    fun `if already sorted then nothing changes`() {
-        val input = arrayOf(1, 2, 3, 4, 5, 6)
+    @Nested
+    @DisplayName("Traditional algorithm")
+    inner class TraditionalQuicksort {
 
-        quicksort(input)
+        @Test
+        fun `if already sorted then nothing changes`() {
+            val input = arrayOf(1, 2, 3, 4, 5, 6)
 
-        assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+            quicksort(input)
+
+            assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+        }
+
+        @Test
+        fun `reversed input will be sorted`() {
+            val input = arrayOf(6, 5, 4, 3, 2, 1)
+
+            quicksort(input)
+
+            assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+        }
+
+        @Test
+        fun `simple shuffled example`() {
+            val input = arrayOf(5, 2, 4, 6, 1, 3)
+
+            quicksort(input)
+
+            assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+        }
+
+        @Test
+        fun `empty just returns the same empty result`() {
+            val input = emptyArray<Int>()
+
+            quicksort(input)
+
+            assertThat(input).isEmpty()
+        }
+
     }
 
-    @Test
-    fun `reversed input will be sorted`() {
-        val input = arrayOf(6, 5, 4, 3, 2, 1)
+    @Nested
+    @DisplayName("Randomized algorithm")
+    inner class RandomizedQuicksort {
 
-        quicksort(input)
+        @Test
+        fun `if already sorted then nothing changes`() {
+            val input = arrayOf(1, 2, 3, 4, 5, 6)
 
-        assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+            randomizedQuicksort(input)
+
+            assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+        }
+
+        @Test
+        fun `reversed input will be sorted`() {
+            val input = arrayOf(6, 5, 4, 3, 2, 1)
+
+            randomizedQuicksort(input)
+
+            assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+        }
+
+        @Test
+        fun `simple shuffled example`() {
+            val input = arrayOf(5, 2, 4, 6, 1, 3)
+
+            randomizedQuicksort(input)
+
+            assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
+        }
+
+        @Test
+        fun `empty just returns the same empty result`() {
+            val input = emptyArray<Int>()
+
+            randomizedQuicksort(input)
+
+            assertThat(input).isEmpty()
+        }
+
     }
 
-    @Test
-    fun `simple shuffled example`() {
-        val input = arrayOf(5, 2, 4, 6, 1, 3)
-
-        quicksort(input)
-
-        assertThat(input).containsExactly(1, 2, 3, 4, 5, 6)
-    }
-
-    @Test
-    fun `empty just returns the same empty result`() {
-        val input = emptyArray<Int>()
-
-        quicksort(input)
-
-        assertThat(input).isEmpty()
-    }
 
 }
