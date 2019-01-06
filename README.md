@@ -26,5 +26,6 @@ Summary
 * [ii. Sorting and Order Statistics](doc/2.00.md)
   * [6. Heapsort](doc/2.06.md)
   * [7. Quicksort](doc/2.07.md)
+  * [8. Sorting in Linear Time](doc/2.08.md)
 
 
