@@ -1,9 +1,8 @@
 package chapter05
 
+import ext.pow
 import java.util.*
 import kotlin.math.roundToInt
-
-fun Int.pow(exponent: Int) = Math.pow(this.toDouble(), exponent.toDouble()).roundToInt()
 
 fun permuteBySorting(A: List<Int>, rng: Random = Random()): List<Int> {
     val n = A.size
