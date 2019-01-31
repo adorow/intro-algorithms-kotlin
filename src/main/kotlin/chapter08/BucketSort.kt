@@ -11,7 +11,7 @@ fun bucketSort(A: Array<Int>): Array<Int> {
         return A
 
     // buckets
-    val B = Array(A.size) { MutableList(0) { 0 } }
+    val B = Array(A.size) { _ -> MutableList(0) { 0 } }
     val n = A.size
 
     val upperBound = 1 + A.max()!!

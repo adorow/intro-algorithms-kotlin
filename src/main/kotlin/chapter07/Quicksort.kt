@@ -1,6 +1,6 @@
 package chapter07
 
-import chapter05.nextInt
+import ext.nextInt
 import ext.swap
 import java.util.*
 

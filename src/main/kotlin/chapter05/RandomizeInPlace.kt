@@ -1,12 +1,10 @@
 package chapter05
 
+import ext.nextInt
 import ext.swap
 import java.util.*
 
-fun Random.nextInt(lowerBound: Int, upperBound: Int): Int =
-        this.nextInt(upperBound - lowerBound) + lowerBound
-
-fun randomizeInPlace(A: MutableList<Int>, rng: Random = Random()): Unit {
+fun randomizeInPlace(A: MutableList<Int>, rng: Random = Random()) {
     val n = A.size
 
     (0 until n - 1).forEach { i ->
