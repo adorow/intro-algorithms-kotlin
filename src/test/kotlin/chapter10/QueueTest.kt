@@ -6,121 +6,121 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFails
 
-class StackTest {
+class QueueTest {
 
     @Nested
-    @DisplayName("Given an a Stack of size 0")
-    inner class StackSizeZero {
+    @DisplayName("Given a Queue of size 0")
+    inner class QueueSizeZero {
 
-        private val S = Stack(0)
+        private val Q = Queue(0)
 
         @Test
         fun `size is ZERO`() {
-            assertThat(S.size).isEqualTo(0)
+            assertThat(Q.size).isEqualTo(0)
         }
 
         @Test
         fun `empty yields TRUE`() {
-            assertThat(S.empty).isEqualTo(true)
+            assertThat(Q.empty).isEqualTo(true)
         }
 
         @Test
         fun `full yields TRUE`() {
-            assertThat(S.full).isEqualTo(true)
+            assertThat(Q.full).isEqualTo(true)
         }
 
         @Test
-        fun `pop() causes an error`() {
-            assertFails { S.pop() }
+        fun `dequeue() causes an error`() {
+            assertFails { Q.dequeue() }
         }
 
         @Test
-        fun `push() causes an error`() {
-            assertFails { S.push(1) }
+        fun `enqueue() causes an error`() {
+            assertFails { Q.enqueue(1) }
         }
 
     }
 
     @Nested
-    @DisplayName("Given a Stack of Size 3")
-    inner class StackSizeThree {
+    @DisplayName("Given a Queue of Size 3")
+    inner class QueueSizeThree {
 
-        private val S = Stack(3)
+        private val Q = Queue(3)
 
         @Test
         fun `size starts at ZERO`() {
-            assertThat(S.size).isEqualTo(0)
+            assertThat(Q.size).isEqualTo(0)
         }
 
         @Test
         fun `empty yields TRUE`() {
-            assertThat(S.empty).isEqualTo(true)
+            assertThat(Q.empty).isEqualTo(true)
         }
 
         @Test
         fun `full yields FALSE`() {
-            assertThat(S.full).isEqualTo(false)
+            assertThat(Q.full).isEqualTo(false)
         }
 
         @Test
         fun `pop() causes an error`() {
-            assertFails { S.pop() }
+            assertFails { Q.dequeue() }
         }
 
         @Nested
-        @DisplayName("After pushing [1, 2, 3]")
+        @DisplayName("After enqueing [1, 2, 3]")
         inner class Add123 {
 
             init {
-                S.push(1)
-                S.push(2)
-                S.push(3)
+                Q.enqueue(1)
+                Q.enqueue(2)
+                Q.enqueue(3)
             }
 
             @Test
             fun `empty now yields FALSE`() {
-                assertThat(S.empty).isEqualTo(false)
+                assertThat(Q.empty).isEqualTo(false)
             }
 
             @Test
             fun `full now yields TRUE`() {
-                assertThat(S.full).isEqualTo(true)
+                assertThat(Q.full).isEqualTo(true)
             }
 
             @Test
             fun `size is now THREE`() {
-                assertThat(S.size).isEqualTo(3)
+                assertThat(Q.size).isEqualTo(3)
             }
 
             @Test
-            fun `push() causes an error`() {
-                assertFails { S.push(10) }
+            fun `enqueue() causes an error`() {
+                assertFails { Q.enqueue(10) }
             }
 
             @Nested
-            @DisplayName("Then popping one value")
-            inner class ThenPoppingOneValue {
+            @DisplayName("Then dequeing one value")
+            inner class ThenDequeingOneValue {
 
-                private var x: Int = S.pop()
+                private var x: Int = Q.dequeue()
 
                 @Test
                 fun `empty still yields FALSE`() {
-                    assertThat(S.empty).isEqualTo(false)
+                    assertThat(Q.empty).isEqualTo(false)
                 }
 
                 @Test
                 fun `full now yields FALSE again`() {
-                    assertThat(S.full).isEqualTo(false)
+                    assertThat(Q.full).isEqualTo(false)
                 }
 
                 @Test
                 fun `size is now TWO`() {
-                    assertThat(S.size).isEqualTo(2)
+                    assertThat(Q.size).isEqualTo(2)
                 }
 
                 @Test
-                fun `popped value was THREE`() {
-                    assertThat(x).isEqualTo(3)
+                fun `dequeued value was ONE`() {
+                    assertThat(x).isEqualTo(1)
                 }
 
                 @Nested
@@ -128,47 +128,47 @@ class StackTest {
                 inner class ThenAddingOneMoreAgain {
 
                     init {
-                        S.push(4)
+                        Q.enqueue(4)
                     }
 
                     @Test
                     fun `empty still yields FALSE`() {
-                        assertThat(S.empty).isEqualTo(false)
+                        assertThat(Q.empty).isEqualTo(false)
                     }
 
                     @Test
                     fun `full now yields TRUE again`() {
-                        assertThat(S.full).isEqualTo(true)
+                        assertThat(Q.full).isEqualTo(true)
                     }
 
                     @Test
                     fun `size is now THREE`() {
-                        assertThat(S.size).isEqualTo(3)
+                        assertThat(Q.size).isEqualTo(3)
                     }
 
                     @Nested
-                    @DisplayName("Then popping three items to empty the Stack")
+                    @DisplayName("Then dequeing three items to empty the Queue")
                     inner class ThenPoppingThreeItems {
 
                         init {
-                            S.pop()
-                            S.pop()
-                            S.pop()
+                            Q.dequeue()
+                            Q.dequeue()
+                            Q.dequeue()
                         }
 
                         @Test
                         fun `empty now yields TRUE`() {
-                            assertThat(S.empty).isEqualTo(true)
+                            assertThat(Q.empty).isEqualTo(true)
                         }
 
                         @Test
                         fun `full now yields FALSE again`() {
-                            assertThat(S.full).isEqualTo(false)
+                            assertThat(Q.full).isEqualTo(false)
                         }
 
                         @Test
                         fun `size is now ZERO`() {
-                            assertThat(S.size).isEqualTo(0)
+                            assertThat(Q.size).isEqualTo(0)
                         }
 
                     }
