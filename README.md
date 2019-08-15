@@ -28,5 +28,7 @@ Summary
   * [7. Quicksort](doc/2.07.md)
   * [8. Sorting in Linear Time](doc/2.08.md)
   * [9. Medians and Order Statistics](doc/2.09.md)
+* [iii. Data Structures](doc/3.00.md)
+  * [10. Elementary Data Structures](doc/3.10.md)
 
 
