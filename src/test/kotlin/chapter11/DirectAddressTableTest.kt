@@ -1,6 +1,5 @@
-package chapter10
+package chapter11
 
-import chapter11.DirectAddressTable
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -10,7 +9,7 @@ class DirectAddressTableTest {
 
     @Nested
     @DisplayName("Given an empty DirectAddressTable")
-    inner class LinkedListSizeZero {
+    inner class DirectAddressTableSizeZero {
 
         private val T = DirectAddressTable(10)
 
@@ -23,7 +22,7 @@ class DirectAddressTableTest {
 
         @Nested
         @DisplayName("After inserting a value (5 at key=3)")
-        inner class LinkedListAfterInsert {
+        inner class AfterInsert {
 
             init {
                 T.insert(3, 5)
@@ -43,7 +42,7 @@ class DirectAddressTableTest {
 
             @Nested
             @DisplayName("After deleting key=3")
-            inner class LinkedListSizeThree {
+            inner class AfterDeleting {
 
                 init {
                     T.delete(3)
