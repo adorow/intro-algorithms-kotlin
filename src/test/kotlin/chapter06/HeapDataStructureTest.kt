@@ -107,7 +107,7 @@ class HeapDataStructureTest {
         }
 
         @Test
-        fun `with a longer array`() {
+        fun `with a longer array extracting one element`() {
             val input = arrayOf(7, 5, 8, 19, 3, 1, 18)
 
             val heap = MaxHeap.buildMaxHeap(input)
@@ -117,6 +117,25 @@ class HeapDataStructureTest {
             assertThat(heap.heapSize).isEqualTo(7)
             assertThat(heap.heapExtractMax()).isEqualTo(19)
             assertThat(heap.heapSize).isEqualTo(6)
+        }
+
+        @Test
+        fun `with a longer array extracting all elements`() {
+            val input = arrayOf(7, 5, 8, 19, 3, 1, 18)
+
+            val heap = MaxHeap.buildMaxHeap(input)
+
+
+            // heapSize is decreased after the operation
+            assertThat(heap.heapSize).isEqualTo(7)
+            assertThat(heap.heapExtractMax()).isEqualTo(19)
+            assertThat(heap.heapExtractMax()).isEqualTo(18)
+            assertThat(heap.heapExtractMax()).isEqualTo(8)
+            assertThat(heap.heapExtractMax()).isEqualTo(7)
+            assertThat(heap.heapExtractMax()).isEqualTo(5)
+            assertThat(heap.heapExtractMax()).isEqualTo(3)
+            assertThat(heap.heapExtractMax()).isEqualTo(1)
+            assertThat(heap.heapSize).isEqualTo(0)
         }
 
     }

@@ -36,9 +36,6 @@ class MaxHeap private constructor(private var A: Array<Int>) {
     val length: Int
         get() = this.A.size
 
-    val innerArray: Array<Int>
-        get() = A
-
     fun parent(i: Int) = ((i + 1) shr 1) - 1 // (i / 2) | considering index starting at 1
     fun left(i: Int) = ((i + 1) shl 1) - 1 // (i * 2) | considering index starting at 1
     fun right(i: Int) = ((i + 1) shl 1) // (i * 2) + 1 | considering index starting at 1
@@ -82,13 +79,13 @@ class MaxHeap private constructor(private var A: Array<Int>) {
 
         val max = A[0]
         A[0] = A[--_heapSize]
-        maxHeapify(1)
+        maxHeapify(0)
         return max
     }
 
     private fun heapIncreaseKey(i: Int, key: Int) {
         if (key < A[i]) {
-            throw Exception("new key is smaller than curent key")
+            throw Exception("new key is smaller than current key")
         }
         A[i] = key
 
