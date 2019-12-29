@@ -14,7 +14,7 @@ class ChainedHashTableTest {
         private val T = ChainedHashTable(10)
 
         @Test
-        fun `searching for several keys yields NIL`() {
+        fun `searching for several keys does not find them`() {
             assertThat(T.search(1)).isFalse()
             assertThat(T.search(15)).isFalse()
             assertThat(T.search(5)).isFalse()
