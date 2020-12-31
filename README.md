@@ -32,5 +32,7 @@ Summary
   * [10. Elementary Data Structures](doc/3.10.md)
   * [11. Hash Tables](doc/3.11.md)
   * [12. Binary Search Trees](doc/3.12.md)
+  * [13. Red-Black Trees](doc/3.13.md)
+  
 
 
