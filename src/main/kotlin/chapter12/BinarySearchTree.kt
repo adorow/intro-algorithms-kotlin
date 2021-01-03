@@ -94,7 +94,7 @@ class BinarySearchTree {
         return root?.maximum()
     }
 
-    class Node(val key: Int) {
+    inner class Node(val key: Int) {
 
         var left: Node? = null
             internal set

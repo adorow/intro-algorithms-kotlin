@@ -1,17 +1,17 @@
-package chapter12
+package chapter13
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class BinarySearchTreeTest {
+class RedBlackTreeTest {
 
     @Nested
-    @DisplayName("Given an empty Binary Search Tree")
+    @DisplayName("Given an empty Red-Black Tree")
     inner class EmptyTree {
 
-        private val T = BinarySearchTree()
+        private val T = RedBlackTree()
 
         @Test
         fun `searching does not find anything`() {
@@ -32,13 +32,13 @@ class BinarySearchTreeTest {
     }
 
     @Nested
-    @DisplayName("One element Binary Search Tree")
+    @DisplayName("One element Red-Black Tree")
     inner class OneElementTree {
 
-        private val T = BinarySearchTree()
+        private val T = RedBlackTree()
 
         init {
-            T.insert(3)
+            T.rbInsert(3)
         }
 
         @Test
@@ -78,7 +78,7 @@ class BinarySearchTreeTest {
         inner class OneElementTreeAfterDeleting {
 
             init {
-                T.delete(T.search(3)!!)
+                T.rbDelete(T.search(3)!!)
             }
 
             @Test
@@ -102,18 +102,18 @@ class BinarySearchTreeTest {
     }
 
     @Nested
-    @DisplayName("Few elements in random order in a Binary Search Tree")
+    @DisplayName("Few elements in random order in a Red-Black Tree")
     inner class FewRandomElementsTree {
 
-        private val T = BinarySearchTree()
+        private val T = RedBlackTree()
 
         init {
-            T.insert(3)
-            T.insert(1)
-            T.insert(5)
-            T.insert(4)
-            T.insert(6)
-            T.insert(2)
+            T.rbInsert(3)
+            T.rbInsert(1)
+            T.rbInsert(5)
+            T.rbInsert(4)
+            T.rbInsert(6)
+            T.rbInsert(2)
         }
 
         @Test
@@ -173,10 +173,10 @@ class BinarySearchTreeTest {
         inner class FewElementsAfterDeletingSomeElements {
 
             init {
-                T.delete(T.search(3)!!)
-                T.delete(T.search(6)!!)
-                T.delete(T.search(5)!!)
-                T.delete(T.search(1)!!)
+                T.rbDelete(T.search(3)!!)
+                T.rbDelete(T.search(6)!!)
+                T.rbDelete(T.search(5)!!)
+                T.rbDelete(T.search(1)!!)
             }
 
             @Test
@@ -220,19 +220,19 @@ class BinarySearchTreeTest {
     }
 
     @Nested
-    @DisplayName("Few elements in sequential order in a Binary Search Tree")
+    @DisplayName("Few elements in sequential order in a Red-Black Tree")
     inner class FewSequentialElementsTree {
 
-        private val T = BinarySearchTree()
+        private val T = RedBlackTree()
 
         init {
-            T.insert(1)
-            T.insert(2)
-            T.insert(3)
-            T.insert(4)
-            T.insert(5)
-            T.insert(6)
-            T.insert(7)
+            T.rbInsert(1)
+            T.rbInsert(2)
+            T.rbInsert(3)
+            T.rbInsert(4)
+            T.rbInsert(5)
+            T.rbInsert(6)
+            T.rbInsert(7)
         }
 
         @Test
@@ -292,11 +292,11 @@ class BinarySearchTreeTest {
         inner class FewSequentialElementsAfterDeletingSomeElementsSequentially {
 
             init {
-                T.delete(T.search(1)!!)
-                T.delete(T.search(2)!!)
-                T.delete(T.search(3)!!)
-                T.delete(T.search(4)!!)
-                T.delete(T.search(5)!!)
+                T.rbDelete(T.search(1)!!)
+                T.rbDelete(T.search(2)!!)
+                T.rbDelete(T.search(3)!!)
+                T.rbDelete(T.search(4)!!)
+                T.rbDelete(T.search(5)!!)
                 // only 6 and 7 remain
             }
 
@@ -339,6 +339,5 @@ class BinarySearchTreeTest {
         }
 
     }
-
 
 }
