@@ -40,7 +40,7 @@ class RedBlackTree {
     }
 
     private fun rightRotate(y: RBNode) {
-        var x = y.left // set x
+        val x = y.left // set x
         y.left = x.right // turn x's right subtree into y's left subtree
 
         if (x.right != nil) {
@@ -90,6 +90,7 @@ class RedBlackTree {
         rbInsertFixup(z)
     }
 
+    @Suppress("NAME_SHADOWING")
     private fun rbInsertFixup(z: RBNode) {
         var z = z // shadow to preserve nomenclature
 
@@ -134,7 +135,7 @@ class RedBlackTree {
     fun rbDelete(z: RBNode) {
         var y = z
         var yOriginalColor = y.color
-        var x: RBNode
+        val x: RBNode
 
         if (z.left == nil) {
             x = z.right
@@ -143,7 +144,7 @@ class RedBlackTree {
             x = z.left
             rbTransplant(z, z.left)
         } else {
-            val y = z.right.minimum()
+            y = z.right.minimum()
             yOriginalColor = y.color
             x = y.right
             if (y.p == z) {
@@ -176,6 +177,7 @@ class RedBlackTree {
         v.p = u.p
     }
 
+    @Suppress("NAME_SHADOWING")
     private fun rbDeleteFixup(x: RBNode) {
         var x = x
         while (x != root && x.color == BLACK) {
