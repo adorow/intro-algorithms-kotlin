@@ -33,6 +33,7 @@ Summary
   * [11. Hash Tables](doc/3.11.md)
   * [12. Binary Search Trees](doc/3.12.md)
   * [13. Red-Black Trees](doc/3.13.md)
+  * [14. Augmenting Data Structures](doc/3.14.md)
   
 
 
