@@ -10,14 +10,13 @@ private fun memoizedCutRodAux(p: Array<Int>, n: Int, r: Array<Int>): Int {
     if (r[n] >= 0) {
         return r[n]
     }
-    var q: Int
+    val q: Int
     if (n == 0) {
         q = 0
     } else {
-        q = Int.MIN_VALUE
-        for (i in 0 until n) {
-            q = maxOf(q, p[i] + memoizedCutRodAux(p, n - (i + 1), r))
-        }
+        q = (0 until n)
+            .map { i -> p[i] + memoizedCutRodAux(p, n - (i + 1), r) }
+            .max() ?: Int.MIN_VALUE
     }
     r[n] = q
 
