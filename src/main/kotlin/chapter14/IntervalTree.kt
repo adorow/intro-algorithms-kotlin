@@ -1,6 +1,7 @@
 package chapter14
 
-import chapter14.IntervalTree.Color.*
+import chapter14.IntervalTree.Color.BLACK
+import chapter14.IntervalTree.Color.RED
 
 data class Interval(val low: Int, val high: Int)
 
@@ -150,109 +151,6 @@ class IntervalTree {
 
     }
 
-//    fun rbDelete(z: IntervalNode) {
-//        var y = z
-//        var yOriginalColor = y.color
-//        val x: IntervalNode
-//
-//        if (z.left == nil) {
-//            x = z.right
-//            rbTransplant(z, z.right)
-//        } else if (z.right == nil) {
-//            x = z.left
-//            rbTransplant(z, z.left)
-//        } else {
-//            y = z.right.minimum()
-//            yOriginalColor = y.color
-//            x = y.right
-//            if (y.p == z) {
-//                x.p = y
-//            } else {
-//                rbTransplant(y, y.right)
-//                y.right = z.right
-//                y.right.p = y
-//            }
-//            rbTransplant(z, y)
-//            y.left = z.left
-//            y.left.p = y
-//            y.color = z.color
-//        }
-//
-//        if (yOriginalColor == BLACK) {
-//            rbDeleteFixup(x)
-//        }
-//    }
-//
-//    private fun rbTransplant(u: IntervalNode, v: IntervalNode?) {
-//        if (u.p == nil) {
-//            root = v!!
-//        } else if (u == u.p.left) {
-//            u.p.left = v!!
-//        } else {
-//            u.p.right = v!!
-//        }
-//
-//        v.p = u.p
-//    }
-//
-//    @Suppress("NAME_SHADOWING")
-//    private fun rbDeleteFixup(x: IntervalNode) {
-//        var x = x
-//        while (x != root && x.color == BLACK) {
-//            if (x == x.p.left) {
-//                var w = x.p.right
-//                if (w.color == RED) {
-//                    w.color = BLACK // case 1
-//                    x.p.color = RED // case 1
-//                    leftRotate(x.p) // case 1
-//                    w = x.p.right  // case 1
-//                }
-//                if (w.left.color == BLACK && w.right.color == BLACK) {
-//                    w.color = RED // case 2
-//                    x = x.p // case 2
-//                } else {
-//                    if (w.right.color == BLACK) {
-//                        w.left.color = BLACK // case 3
-//                        w.color = RED // case 3
-//                        rightRotate(w) // case 3
-//                        w = x.p.right // case 3
-//                    }
-//                    w.color = x.p.color // case 4
-//                    x.p.color = BLACK // case 4
-//                    x.right.color = BLACK // case 4
-//                    leftRotate(x.p) // case 4
-//                    x = root // case 4
-//                }
-//            } else {
-//                var w = x.p.left
-//                if (w.color == RED) {
-//                    w.color = BLACK // case 1
-//                    x.p.color = RED // case 1
-//                    rightRotate(x.p) // case 1
-//                    w = x.p.left  // case 1
-//                }
-//                if (w.right.color == BLACK && w.left.color == BLACK) {
-//                    w.color = RED // case 2
-//                    x = x.p // case 2
-//                } else {
-//                    if (w.left.color == BLACK) {
-//                        w.right.color = BLACK // case 3
-//                        w.color = RED // case 3
-//                        leftRotate(w) // case 3
-//                        w = x.p.left // case 3
-//                    }
-//                    w.color = x.p.color // case 4
-//                    x.p.color = BLACK // case 4
-//                    x.left.color = BLACK // case 4
-//                    rightRotate(x.p) // case 4
-//                    x = root // case 4
-//                }
-//            }
-//        }
-//
-//        x.color = BLACK
-//    }
-
     fun intervalSearch(i: Interval): IntervalNode? {
         var x = root
         while (x != nil && !overlaps(x.int, i)) {
@@ -268,20 +166,6 @@ class IntervalTree {
     // We say that intervals _i_ and _i'_ overlap **_overlap_** if _i_ ∩ _i'_ ≠ 0, that is, if _i_._low_ ≤ _i'_._high_ and _i'_._low_ ≤ _i_._high_
     private fun overlaps(i: Interval, i_: Interval): Boolean =
         i.low <= i_.high && i_.low <= i.high
-
-//    private fun minimum(): IntervalNode? {
-//        return when {
-//            (root == nil) -> null
-//            else -> root.minimum()
-//        }
-//    }
-//
-//    fun maximum(): IntervalNode? {
-//        return when {
-//            (root == nil) -> null
-//            else -> root.maximum()
-//        }
-//    }
 
     enum class Color {
         RED, BLACK
@@ -299,38 +183,6 @@ class IntervalTree {
             internal set
         var max: Int = 0
             internal set
-
-        internal fun minimum(): IntervalNode =
-                if (left == nil) this else left.minimum()
-
-//        internal fun maximum(): IntervalNode =
-//                if (right == nil) this else right.maximum()
-
-//        fun successor(): IntervalNode? {
-//            if (right != nil) {
-//                return right.minimum()
-//            }
-//            var x = this
-//            var y = x.p
-//            while (y != nil && x == y.right) {
-//                x = y
-//                y = y.p
-//            }
-//            return y.orNull
-//        }
-//
-//        fun predecessor(): IntervalNode? {
-//            if (left != nil) {
-//                return left.maximum()
-//            }
-//            var x = this
-//            var y = x.p
-//            while (y != nil && x == y.left) {
-//                x = y
-//                y = y.p
-//            }
-//            return y.orNull
-//        }
 
         val orNull: IntervalNode?
             get() {
