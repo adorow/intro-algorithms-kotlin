@@ -34,6 +34,5 @@ Summary
   * [12. Binary Search Trees](doc/3.12.md)
   * [13. Red-Black Trees](doc/3.13.md)
   * [14. Augmenting Data Structures](doc/3.14.md)
-  
-
-
+* [iv. Advanced Design and Analysis Techniques](doc/4.00.md)
+  * [15. Dynamic Programming](doc/4.15.md)
