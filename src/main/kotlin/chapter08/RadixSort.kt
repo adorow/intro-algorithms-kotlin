@@ -17,7 +17,7 @@ fun radixSort(A: Array<Int>, d: Int = getMaxExponent(A)): Array<Int> {
 }
 
 private fun getMaxExponent(A: Array<Int>): Int {
-    return A.map { getExponent(it) }.max() ?: 0
+    return A.maxOfOrNull { getExponent(it) } ?: 0
 }
 
 private fun getExponent(a: Int): Int {

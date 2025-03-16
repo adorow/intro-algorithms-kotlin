@@ -1,9 +1,7 @@
 package chapter03
 
-import kotlin.coroutines.experimental.buildSequence
-
 fun fibonacci() : Sequence<Int> =
-        buildSequence {
+        sequence {
             yield(0)
             yield(1)
 

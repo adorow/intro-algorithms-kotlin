@@ -23,7 +23,7 @@ class RandomizeInPlaceTest {
 
         randomizeInPlace(input, Random(1337))
 
-        assertThat(input).containsExactly(2, 1, 5, 3, 4, 6)
+        assertThat(input).containsExactly(2, 1, 5, 4, 3, 6)
     }
 
 }
