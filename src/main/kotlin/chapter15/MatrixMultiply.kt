@@ -66,3 +66,38 @@ fun matrixMultiply(A: Matrix, B: Matrix): Matrix {
     }
     return C
 }
+
+// 'p' is the sequence of dimensions of the matrixes to be multiplied
+// 'matrixChainOrder', followed by 'optimalParens' will give the optimal order of matrix multiplications, in order to minimise the number of operations
+fun matrixChainOrder(p: IntArray): Pair<Array<IntArray>, Array<IntArray>> {
+    val n = p.size - 1
+    val m = Array(n + 1) { IntArray(n + 1) }
+    val s = Array(n - 1 + 1) { IntArray(n + 1) }
+
+    // => no need to 'zero' the data
+    // for (i in 0..n - 1) {
+    //     m[i][i] = 0
+    // }
+
+    for (l in 2..n) { // l is the chain length
+        for (i in 1..n - l + 1) {
+            val j = i + l - 1
+            m[i][j] = Int.MAX_VALUE // "infinity"
+            for (k in i..j - 1) {
+                val q = m[i][k] + m[k + 1][j] + (p[i - 1] * p[k] * p[j])
+                if (q < m[i][j]) {
+                    m[i][j] = q
+                    s[i][j] = k
+                }
+            }
+        }
+    }
+    return m to s
+}
+
+fun optimalParens(s: Array<IntArray>, i: Int = 1, j: Int = s.size): String =
+    if (i == j) {
+        "A${i}"
+    } else {
+        "(${optimalParens(s, i, s[i][j])}${optimalParens(s,s[i][j]+1, j)})"
+    }

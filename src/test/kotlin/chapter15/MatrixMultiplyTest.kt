@@ -49,4 +49,15 @@ class MatrixMultiplyTest {
         assertThat(result[2, 1]).isEqualTo(48)
         assertThat(result[2, 2]).isEqualTo(-56)
     }
+
+    @Test
+    fun `should provide the optimal parenthesizing for minimising operations`() {
+        // reflects the multiplication of the following matrices:
+        // 30x35 * 35x15 * 15x5 * 5x10 * 10x20 * 20x25
+        val p = intArrayOf(30, 35, 15, 5, 10, 20, 25)
+        val (m, s) = matrixChainOrder(p)
+        val result = optimalParens(s)
+
+        assertThat(result).isEqualTo("((A1(A2A3))((A4A5)A6))")
+    }
 }
