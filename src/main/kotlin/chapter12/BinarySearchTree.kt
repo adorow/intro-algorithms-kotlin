@@ -1,8 +1,6 @@
 package chapter12
 
-class BinarySearchTree {
-
-    private var root: Node? = null
+class BinarySearchTree(private var root: Node? = null) {
 
     fun insert(v: Int) {
         val z = Node(key = v)
@@ -94,48 +92,73 @@ class BinarySearchTree {
         return root?.maximum()
     }
 
-    inner class Node(val key: Int) {
+    override fun equals(other: Any?): Boolean =
+        other is BinarySearchTree
+                && root == other.root
+}
 
-        var left: Node? = null
-            internal set
-        var right: Node? = null
-            internal set
-        var p: Node? = null
-            internal set
+class Node(val key: Int) {
 
-        internal fun minimum(): Node =
-                left?.minimum() ?: this
+    var left: Node? = null
+        internal set
+    var right: Node? = null
+        internal set
+    var p: Node? = null
+        internal set
 
-        internal fun maximum(): Node =
-                right?.maximum() ?: this
+    internal fun minimum(): Node =
+        left?.minimum() ?: this
 
-        fun successor(): Node? {
-            if (right != null) {
-                return right!!.minimum()
-            }
-            var x = this
-            var y = x.p
-            while (y != null && x == y.right) {
-                x = y
-                y = y.p
-            }
-            return y
+    internal fun maximum(): Node =
+        right?.maximum() ?: this
+
+    fun successor(): Node? {
+        if (right != null) {
+            return right!!.minimum()
         }
-
-        fun predecessor(): Node? {
-            if (left != null) {
-                return left!!.maximum()
-            }
-            var x = this
-            var y = x.p
-            while (y != null && x == y.left) {
-                x = y
-                y = y.p
-            }
-            return y
+        var x = this
+        var y = x.p
+        while (y != null && x == y.right) {
+            x = y
+            y = y.p
         }
-
+        return y
     }
 
+    fun predecessor(): Node? {
+        if (left != null) {
+            return left!!.maximum()
+        }
+        var x = this
+        var y = x.p
+        while (y != null && x == y.left) {
+            x = y
+            y = y.p
+        }
+        return y
+    }
+
+    fun withLeft(node: Node?): Node {
+        if (node != null) {
+            node.p = this
+        }
+        left = node
+        return this
+    }
+
+    fun withRight(node: Node?): Node {
+        if (node != null) {
+            node.p = this
+        }
+        right = node
+        return this
+    }
+
+    override fun equals(other: Any?): Boolean =
+        other is Node
+                && key == other.key
+                && left == other.left
+                && right == other.right
 }
+
 

@@ -1,8 +1,5 @@
 package chapter12
 
-import chapter12.BinarySearchTree.Node
-
-
 fun inorderTreeWalk(x: Node?, visit: (Node) -> Unit = { print(it.key) }) {
     x?.apply {
         inorderTreeWalk(left)
